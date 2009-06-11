@@ -1,0 +1,71 @@
+﻿#Name	"PT7 Interlinear to Glosses"
+#Description	"Produces html files which have only the gloss line of the Paratext interlinear"
+#FileRename	.html	-gloss.html
+
+<SPAN class=nogloss>-</SPAN>	<SPAN class=nogloss>_____</SPAN>
+<TD class="prj lexeme">.*?</TD>
+</TR>\n*
+</TD>\n*
+<TBODY>
+</TBODY>\n*
+<TABLE.*>
+</TABLE>
+<TR\>
+<TD.*?>
+#href=".*"
+&nbsp;
+"verse prj"	"verse"
+<A class=link href.*?/A>
+<A class="gloss link".*?>	<SPAN class="gloss">
+<A class="guess.*?>	<SPAN class="guess">
+</A>	</SPAN>
+"prj punctuation"	"punctuation"
+
+#remove empty punctuation spans
+<SPAN class="punctuation"></SPAN>
+
+#hack part 1: make them safe from my overly greeding collapser below
+<SPAN class="verse">(.*?)</SPAN>	VERSE[$1]
+<SPAN class=caller>(.*?)</SPAN>	CALLER[$1]
+
+#collapse neighboring glosses and punctuation
+<SPAN class="(gloss|punctuation)">(.*?)</SPAN>[\s,\n]*<SPAN class="(gloss|punctuation)">(.*?)</SPAN>	<SPAN class="gloss">$2 $4</SPAN>	REPEAT
+
+#hack part 2: put them back
+VERSE\[(\d+)\]	<SPAN class="verse">$1</SPAN>
+CALLER\[(.*?)\]	<SPAN class="caller">$1</SPAN>
+
+#remove unwanted spaces
+\s's	's
+[\f\v\x85\p{Z}]+\.	.
+\s+,	,
+\s+-	-
+-\s+	-
+,\s\s+	,\s
+
+#3 spaces after periods
+\.\s\s+	.\s\s\s
+
+# Capatilize after period
+>[^<]+</	SentenceCap
+
+#remove up unusted style definitions
+\.mdl[^\}]*?\}
+\.prj[^\}]*?\}
+#\.interlinear[^\}]*?\}
+\.lexeme[^\}]*?\}
+^table[^\}]*\{[^\}]*?\}
+^td[^\w]*\{[^\}]*?\}
+^form[^\}]*\{[^\}]*?\}
+#body[^\}]*\{[^\}]*?\}
+\.brace[^\}]*?\}
+\.link[^\}]*?\}
+\.menu[^\}]*?\}
+\.chunk[^\}]*?\}
+\.indent[^\}]*?\}
+#\.header[^\}]*?\}
+\.cluster[^\}]*\}
+\.form[^\}]*\}
+
+#remove empty lines
+\n\r(\n\r)+	\n	REPEAT
