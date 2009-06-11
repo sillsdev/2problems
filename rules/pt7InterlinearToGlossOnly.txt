@@ -44,7 +44,7 @@ CALLER\[(.*?)\]	<SPAN class="caller">$1</SPAN>
 ,\s\s+	,\s
 
 #3 spaces after periods
-\.\s\s+	.\s\s\s
+\.\s\s*	.&nbsp;&nbsp;&nbsp;
 
 # Capatilize after period
 >[^<]+</	SentenceCap

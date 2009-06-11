@@ -30,7 +30,7 @@ namespace TwoProblems
                 var from = new System.Text.RegularExpressions.Regex(fromTo[0], RegexOptions.IgnoreCase | RegexOptions.Multiline);//| RegexOptions.IgnorePatternWhitespace
                 string to = string.Empty;
                 if (fromTo.Length > 1)
-                    to = fromTo[1].Replace("\\n", Environment.NewLine).Replace(@"\s", " ");
+                    to = fromTo[1].Replace("\\n", Environment.NewLine).Replace("\\s", " ");
                 // var to = new System.Text.RegularExpressions.Regex(regexs[1]);
 
                 new RegexOptions();
