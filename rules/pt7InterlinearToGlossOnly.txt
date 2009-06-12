@@ -17,6 +17,9 @@
 "verse prj"	"verse"
 <A class=link href.*?/A>
 <A class="gloss link".*?>	<SPAN class="gloss">
+
+#through out the guess distinction
+<A class="guess link".*?>	<SPAN class="gloss">
 <A class="guess.*?>	<SPAN class="guess">
 </A>	</SPAN>
 "prj punctuation"	"punctuation"
@@ -35,6 +38,9 @@
 VERSE\[(\d+)\]	<SPAN class="verse">$1</SPAN>
 CALLER\[(.*?)\]	<SPAN class="caller">$1</SPAN>
 
+# Capatilize after period
+>[^<]+</	SentenceCap
+
 #remove unwanted spaces
 \s's	's
 [\f\v\x85\p{Z}]+\.	.
@@ -46,8 +52,7 @@ CALLER\[(.*?)\]	<SPAN class="caller">$1</SPAN>
 #3 spaces after periods
 \.\s\s*	.&nbsp;&nbsp;&nbsp;
 
-# Capatilize after period
->[^<]+</	SentenceCap
+
 
 #remove up unusted style definitions
 \.mdl[^\}]*?\}
