@@ -129,7 +129,9 @@ namespace TwoProblems
             _sourceFilesList.Items.Clear();
             foreach (var file in _controller.SourceFilePaths)
             {
-                _sourceFilesList.Items.Add(Path.GetFileName(file));
+                var item = new ListViewItem(Path.GetFileName(file));
+                item.Tag = file;
+                _sourceFilesList.Items.Add(item);
             }
 
             _processAllButton.Enabled = _controller.SourceFilePaths.Count > 0 && _rulesFilesCombo.SelectedIndex > -1;
@@ -158,6 +160,17 @@ namespace TwoProblems
                 MessageBox.Show(error.Message);
             }
 
+        }
+
+
+        private void _sourceFilesList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(_sourceFilesList.SelectedItems.Count >0 && e.KeyValue == (char)Keys.Delete)
+            {
+                _controller.SourceFilePaths.Remove((string)_sourceFilesList.SelectedItems[0].Tag);
+                UpdateDisplay();
+            }
+            
         }
 
     }
