@@ -12,8 +12,8 @@ namespace TwoProblems
         private readonly string _pathToRulesDirectory;
         private string _selectedRulesPath;
         public List<string> Files { get; set; }
-        public string FileNamePartMatch { get; set; }
-        public string FileNamePartReplace { get; set; }
+//        public string FileNamePartMatch { get; set; }
+//        public string FileNamePartReplace { get; set; }
         public List<RuleChoice> RulesFileChoices { get; set; }
 
         public string SelectedRulesPath
@@ -26,8 +26,8 @@ namespace TwoProblems
             {
                 _selectedRulesPath = value;
                 //enhance: read these out of the rules file
-                FileNamePartMatch = ".";
-                FileNamePartReplace = "-2p.";
+//                FileNamePartMatch = ".";
+//                FileNamePartReplace = "-2p.";
             }
         }
 
