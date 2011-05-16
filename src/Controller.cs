@@ -61,6 +61,7 @@ namespace TwoProblems
             ProcessedFiles.Clear();
             Cursor.Current = Cursors.WaitCursor;
             var processor = new RegexFileProcessor(RulesContents);
+            ReadFileNamingRules();
             foreach (var path in SourceFilePaths)
             {
                 var outputPath = path.Replace(FileNamePartMatch, FileNamePartReplace);
@@ -71,8 +72,24 @@ namespace TwoProblems
             Cursor.Current = Cursors.Default;
         }
 
-
-       
+        private void ReadFileNamingRules()
+        {
+            foreach (string line in RulesContents.Split(new char[]{'\n'}))
+            {
+                if(line.StartsWith("FileRename"))
+                {
+                    var parts = line.Split(new char[] {'\t', ' '}, StringSplitOptions.RemoveEmptyEntries);
+                    if (parts.Length != 3)
+                    {
+                        MessageBox.Show("Expected FileName fileNamePartToMatch fileNamePartToReplace");
+                        return;
+                    }
+                    FileNamePartMatch = parts[1].Trim();
+                    FileNamePartReplace = parts[2].Trim();
+                    return;
+                }
+            }
+        }
 
 
         public string SelectedRulesPath
