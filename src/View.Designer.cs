@@ -194,6 +194,8 @@
             this._sourceFilesList.TabIndex = 8;
             this._sourceFilesList.UseCompatibleStateImageBehavior = false;
             this._sourceFilesList.View = System.Windows.Forms.View.List;
+            this._sourceFilesList.KeyDown += new System.Windows.Forms.KeyEventHandler(this._sourceFilesList_KeyDown);
+
             // 
             // _rulesFilesCombo
             // 
