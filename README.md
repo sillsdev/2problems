@@ -17,4 +17,4 @@ After processing, you can view the resulting files, either in a text window or e
 Get the latest from the Files tab above, unzip the folder and run the exe.
 
 ##Adding your own rules
-Add your own rule sets by placing them in the rules folder. The file should end in ".txt" and start with a comment. See Rules File Format for instructions.
+Add your own rule sets by placing them in the rules folder. The file should end in ".txt" and start with a comment. See [Rules File Format](https://github.com/sillsdev/2problems/wiki/Rules-File-Format) for instructions.
